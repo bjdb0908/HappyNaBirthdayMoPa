@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You 💌</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #ff6b6b;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .message-box {
+      background: #fff;
+      border: 2px dashed #ff6b6b;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      min-height: 150px;
+      text-align: left;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    
+    button {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.3s, background 0.3s;
+    }
+    
+    button:hover {
+      background: #ff4757;
+      transform: scale(1.05);
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    #surprise {
+      font-size: 1.3rem;
+      color: #ff6b6b;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>To The Most Amazing Person 🥳</h1>
+    
+    <div class="message-box">
+      <p>Dear <span id="name">[Name]</span>,</p>
+      <p>Happy Birthday! 🎉 On your special day, I just wanted to tell you...</p>
+      <p>✨ You are one special gal out there.  Please continue being awesome. We may be miles away from each other, but your presence illuminates my way. Naks. ✨</p>
+      <p>Wishing you endless joy, laughter, and cake! 🎂</p>
+      <p>— <span id="your-name">[Your Name]</span></p>
+    </div>
+    
+    <button id="surprise-btn">Click for a Surprise!</button>
+    <p id="surprise" class="hidden">You make the world brighter just by being in it! 🌟</p>
+    
+    <button onclick="window.location.href='index.html'">← Back to Home</button>
+  </div>
+
+<script>
+  // Personalize names
+  document.getElementById('name').textContent = 'Nohren'; // Replace with their name
+  document.getElementById('your-name').textContent = 'Berns'; // Replace with your name
+
+  // Confetti function (copy-paste from index.html if needed)
+  function createConfetti() {
+    const colors = ['#ff0', '#f0f', '#0ff', '#f00', '#0f0', '#00f'];
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(confetti);
+    
+    let pos = 0;
+    const fall = setInterval(() => {
+      pos += 2;
+      confetti.style.opacity = 1;
+      confetti.style.transform = `translateY(${pos}px) rotate(${pos}deg)`;
+      
+      if (pos > window.innerHeight) {
+        clearInterval(fall);
+        confetti.remove();
+      }
+    }, 20);
+  }
+
+  // Teasing surprise button
+  let clickCount = 0;
+  document.getElementById('surprise-btn').addEventListener('click', function() {
+    clickCount++;
+    
+    if (clickCount === 1) {
+      this.textContent = "Nope, not yet! 😏";
+    } 
+    else if (clickCount === 2) {
+      this.textContent = "Still not the time... 🙃";
+    } 
+    else if (clickCount === 3) {
+      this.textContent = "Are you sure? 🤨";
+    } 
+    else if (clickCount === 4) {
+      this.textContent = "You really want the surprise, huh? ❤️";
+      document.getElementById('surprise').classList.remove('hidden');
+      // Trigger confetti!
+      for (let i = 0; i < 50; i++) {
+        setTimeout(createConfetti, i * 30);
+      }
+    }
+    else if (clickCount === 5) {
+      this.textContent = "Okay, fine, here you go cutie pie 🗝";
+      
+      // Create a new "Next Page" button
+      const nextPageBtn = document.createElement('button');
+      nextPageBtn.textContent = "👉 Click for the Next Surprise 👈";
+      nextPageBtn.style.marginTop = "20px";
+      nextPageBtn.style.background = "#4CAF50"; // Green for visibility
+      nextPageBtn.onclick = function() {
+        window.location.href = "page3.9.html"; // Link to your next page
+      };
+      
+      // Append the button below the surprise message
+      document.querySelector('.container').appendChild(nextPageBtn);
+    }
+  });
+</script>
+</body>
+</html>

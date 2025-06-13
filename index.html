@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Rain! 🎉</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: bounce 1.5s infinite alternate;
+    }
+    
+    p {
+      font-size: 1.5rem;
+      color: #fff;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    
+    button {
+      background: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+    
+    button:hover {
+      transform: scale(1.1);
+    }
+    
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday, Nohren! 🎂
+  <p>You're the kind of person who makes ordinary days feel special. Today, it's YOUR turn to shine!</p>
+  <button onclick="window.location.href='page2.html'">See Your Message 💌</button>
+  <script>
+    // Replace [Name] with your crush's name
+    document.getElementById('name').textContent = 'Nohren' ; // Change to their name
+    
+    // Confetti animation
+    function createConfetti() {
+      const colors = ['#ff0', '#f0f', '#0ff', '#f00', '#0f0', '#00f'];
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.appendChild(confetti);
+      
+      let pos = 0;
+      const fall = setInterval(() => {
+        pos += 2;
+        confetti.style.opacity = 1;
+        confetti.style.transform = `translateY(${pos}px) rotate(${pos}deg)`;
+        
+        if (pos > window.innerHeight) {
+          clearInterval(fall);
+          confetti.remove();
+        }
+      }, 20);
+    }
+    
+    // Trigger confetti on load and button click
+    window.onload = function() {
+      for (let i = 0; i < 100; i++) {
+        setTimeout(createConfetti, i * 30);
+      }
+    };
+    
+    document.getElementById('reveal-btn').addEventListener('click', function() {
+      for (let i = 0; i < 50; i++) {
+        setTimeout(createConfetti, i * 30);
+      }
+  </script>
+</body>
+</html>
